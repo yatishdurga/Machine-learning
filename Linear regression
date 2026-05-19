@@ -19,3 +19,33 @@ plt.show()
 
 print(f"X shape: {X.shape}")   # (100, 1)
 print(f"y shape: {y.shape}")   # (100, 1)
+
+
+
+# Let's manually try different weights and see which fits best
+
+def predict(X, w, b):
+    return X * w + b
+
+x_line = np.linspace(0, 2, 100)
+
+plt.figure(figsize=(8, 5))
+plt.scatter(X, y, color='steelblue', alpha=0.5, label='Data')
+
+# Try 3 different lines — only one fits well
+for w, b, color in [(1.0, 8.0, 'red'),
+                    (3.5, 10.0, 'green'),
+                    (6.0, 5.0, 'orange')]:
+    y_line = predict(x_line, w, b)
+    plt.plot(x_line, y_line, color=color,
+             label=f'w={w}, b={b}', linewidth=2)
+
+plt.xlabel('House Size')
+plt.ylabel('Price')
+plt.title('Which line fits best?')
+plt.legend()
+plt.grid(True)
+plt.show()
+
+
+
